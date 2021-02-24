@@ -2,14 +2,15 @@ import { useContext } from 'react';
 import TodoContext from '../../Context/todoListContext';
 
 function List(): JSX.Element {
-  const { todos , changeStatus, deleteItems} = useContext(TodoContext);
+  const { todos, changeStatus, deleteItems } = useContext(TodoContext);
+
 
   const hendlerDeleteItems = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     deleteItems(e.currentTarget.parentElement?.id ?? '');
   };
-  
+
   return (
     <div className="list-group mt-5 w-50">
       {todos?.map((el) => {

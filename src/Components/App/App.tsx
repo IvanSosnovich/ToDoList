@@ -9,35 +9,34 @@ interface TodoItems {
   status: boolean;
 }
 function App(): JSX.Element {
-
   const [todos, setTodos] = useState<TodoItems[]>([]);
 
   const addItems = (items: TodoItems): void => {
     setTodos([...todos, items]);
   };
 
-  const changeStatus = (event: React.ChangeEvent<HTMLInputElement>): void => { 
-    
-    setTodos(todos.map(el => {
-      
-      if (String(el.id) === String(event.currentTarget.parentElement?.id)) {
-        el.status = !el.status;
+  const changeStatus = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setTodos(
+      todos.map((el) => {
+        if (String(el.id) === String(event.currentTarget.parentElement?.id)) {
+          el.status = !el.status;
+          return el;
+        }
         return el;
-      }
-      console.log(todos);
-      
-      return el
-    }))
-  }
-  
+      }),
+    );
+  };
+
   const deleteItems = (itemsId: string): void => {
     console.log(itemsId);
-    setTodos(todos.filter(el => {
-      if (el.id === itemsId) {
-        return false
-      }
-      return true
-    }))
+    setTodos(
+      todos.filter((el) => {
+        if (el.id === itemsId) {
+          return false;
+        }
+        return true;
+      }),
+    );
   };
 
   return (

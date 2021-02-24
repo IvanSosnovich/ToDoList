@@ -16,7 +16,7 @@ function Form(): JSX.Element {
     setItemsTitle('');
   };
   return (
-    <div className="input-group mt-5">
+    <div className="input-gr oup mt-5">
       <input
         type="text"
         className="form-control"

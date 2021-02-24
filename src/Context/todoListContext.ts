@@ -13,7 +13,6 @@ interface TodoList {
   deleteItems: (itemsId: string) => void;
 }
 
-
 const TodoContext = createContext<TodoList>({
   todos: [],
   addItems: (items: TodoItems): void => {},
