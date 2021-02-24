@@ -3,40 +3,24 @@ import List from '../List/List';
 import TodoContext from '../../Context/todoListContext';
 import React, { useState } from 'react';
 
-interface TodoItems {
+interface TodoItem {
   id: string;
   title: string;
   status: boolean;
 }
 function App(): JSX.Element {
-  const [todos, setTodos] = useState<TodoItems[]>([]);
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
-  const addItems = (items: TodoItems): void => {
-    setTodos([...todos, items]);
+  const addItems = (item: TodoItem): void => {
+    setTodos((preTodo) => [...preTodo, item]);
   };
 
-  const changeStatus = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setTodos(
-      todos.map((el) => {
-        if (String(el.id) === String(event.currentTarget.parentElement?.id)) {
-          el.status = !el.status;
-          return el;
-        }
-        return el;
-      }),
-    );
+  const changeStatus = (itemId: string): void => {
+    setTodos((prevTodo) => prevTodo.map(el => el.id === itemId ? {...el,status: !el.status} : el))
   };
 
-  const deleteItems = (itemsId: string): void => {
-    console.log(itemsId);
-    setTodos(
-      todos.filter((el) => {
-        if (el.id === itemsId) {
-          return false;
-        }
-        return true;
-      }),
-    );
+  const deleteItems = (itemId: string): void => {
+    setTodos((preTodo) => preTodo.filter((el) => el.id !== itemId));
   };
 
   return (
